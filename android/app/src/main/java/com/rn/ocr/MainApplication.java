@@ -3,13 +3,13 @@ package com.rn.ocr;
 import android.app.Application;
 import android.content.Context;
 
-import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.youdao.sdk.app.YouDaoApplication;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -48,6 +48,9 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    // 有道OCR
+    YouDaoApplication.init(this, "0b9d10b8a39300c3");
   }
 
   /**
