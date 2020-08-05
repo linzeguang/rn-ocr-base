@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "android:gradlew": "cd android && ./gradlew app:assembleRelease",
     "android:server": "adb reverse tcp:8081 tcp:8081",
-    "andriod:clean": "cd android && ./gradlew clean"
+    "andriod:clean": "cd android && ./gradlew clean",
+    "build:android": "react-native bundle --entry-file index.js --platform android --dev false --bundle-output ./android/app/src/main/assets/index.android.bundle  --assets-dest ./android/app/src/main/assets/"
   },
   "dependencies": {
     "react": "16.13.1",

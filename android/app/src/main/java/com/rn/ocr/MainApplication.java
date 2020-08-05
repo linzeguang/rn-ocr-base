@@ -48,9 +48,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-
-    // 有道OCR
-    YouDaoApplication.init(this, "0b9d10b8a39300c3");
   }
 
   /**
