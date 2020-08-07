@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
 import {SafeAreaView, TouchableOpacity, Text} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
@@ -44,14 +44,17 @@ class App extends Component<{}> {
 
   public render() {
     return (
-      <Fragment>
+      <SafeAreaView style={styles.view_wrap}>
         <StatusBar barStyle="dark-content" backgroundColor="transparent" />
         <SafeAreaView style={styles.view_wrap}>
+          <TouchableOpacity style={styles.btn} onPress={() => {}}>
+            <Text>init</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={this.openPhotoAlbum}>
             <Text>身份证识别</Text>
           </TouchableOpacity>
         </SafeAreaView>
-      </Fragment>
+      </SafeAreaView>
     );
   }
 }
@@ -65,6 +68,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 200,
     height: 56,
+    marginBottom: 10,
     backgroundColor: 'pink',
     borderRadius: 8,
     alignItems: 'center',

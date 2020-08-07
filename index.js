@@ -7,12 +7,16 @@ import App from './App';
 import {name as appName} from './app.json';
 import {check, request} from 'react-native-permissions';
 import {PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {initOCR} from 'src/native';
 
 if (Platform.OS === 'ios') {
   checkiOSPermissions();
 } else {
   checkAndroidPermissions();
 }
+
+// 初始化百度OCR
+initOCR();
 
 AppRegistry.registerComponent(appName, () => App);
 
