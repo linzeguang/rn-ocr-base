@@ -12,6 +12,7 @@ import React, {Component} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
 import {SafeAreaView, TouchableOpacity, Text} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import {recIDCardFront, scanIDCardFront, scanIDCardBack} from 'src/native';
 
 class App extends Component<{}> {
   public openPhotoAlbum = () => {
@@ -27,7 +28,7 @@ class App extends Component<{}> {
         path: 'images',
       },
     };
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.showImagePicker(options, async (response) => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -36,8 +37,12 @@ class App extends Component<{}> {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         console.log(response);
-        const uri = 'data:image/jpeg;base64,' + response.data;
-        console.log(uri);
+        const path = response.path || '';
+        if (!path) {
+          return;
+        }
+        const data = await recIDCardFront(path);
+        console.log('data>>>>>>>>>>>>>>>>>>>>>>>', data);
       }
     });
   };
@@ -52,6 +57,14 @@ class App extends Component<{}> {
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={this.openPhotoAlbum}>
             <Text>身份证识别</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => scanIDCardFront()}>
+            <Text>身份证正面扫描</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={() => scanIDCardBack()}>
+            <Text>身份证反面扫描</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </SafeAreaView>
